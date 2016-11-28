@@ -6,6 +6,8 @@ import ec.gp.ADFStack;
 import ec.gp.GPData;
 import ec.gp.GPIndividual;
 import ec.gp.GPNode;
+import ru.makar.cource.project.gp.data.Ant;
+import ru.makar.cource.project.gp.data.FieldData;
 
 public class PickupNode extends GPNode {
 
@@ -21,6 +23,9 @@ public class PickupNode extends GPNode {
 
     @Override
     public void eval(EvolutionState state, int thread, GPData input, ADFStack stack, GPIndividual individual, Problem problem) {
-
+        FieldData data = (FieldData) input;
+        Ant ant = data.getAnts()[data.getCurrentAnt()];
+        data.getFood()[ant.getPosition().getX()][ant.getPosition().getY()] = false;
+        ant.setFeedFood(ant.getFeedFood() + 1);
     }
 }

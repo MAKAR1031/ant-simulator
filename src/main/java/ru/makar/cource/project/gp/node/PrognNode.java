@@ -11,7 +11,7 @@ public class PrognNode extends GPNode {
 
     @Override
     public int expectedChildren() {
-        return CHILDREN_UNKNOWN;
+        return 2;
     }
 
     @Override
@@ -21,6 +21,7 @@ public class PrognNode extends GPNode {
 
     @Override
     public void eval(EvolutionState state, int thread, GPData input, ADFStack stack, GPIndividual individual, Problem problem) {
-
+        children[0].eval(state, thread, input, stack, individual, problem);
+        children[1].eval(state, thread, input, stack, individual, problem);
     }
 }
