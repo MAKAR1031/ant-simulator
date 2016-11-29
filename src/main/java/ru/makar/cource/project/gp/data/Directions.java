@@ -1,7 +1,5 @@
 package ru.makar.cource.project.gp.data;
 
-import java.util.Arrays;
-
 public enum Directions {
     UP(0, -1),
     RIGHT(1, 0),

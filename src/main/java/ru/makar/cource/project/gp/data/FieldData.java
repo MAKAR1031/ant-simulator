@@ -1,13 +1,13 @@
 package ru.makar.cource.project.gp.data;
 
 import ec.gp.GPData;
-import lombok.Data;
+import lombok.experimental.Accessors;
 
-@Data
-public class FieldData extends GPData{
+@Accessors
+public class FieldData extends GPData {
     private boolean food[][];
     private boolean pheromones[][];
-    private boolean colony[][];
+    private Position colony;
     private Ant ants[];
     private int maxFood;
     private int currentAnt;
