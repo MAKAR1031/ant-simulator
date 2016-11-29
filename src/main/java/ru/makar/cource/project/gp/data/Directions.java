@@ -1,5 +1,7 @@
 package ru.makar.cource.project.gp.data;
 
+import java.util.Arrays;
+
 public enum Directions {
     UP(0, -1),
     RIGHT(1, 0),
@@ -20,5 +22,13 @@ public enum Directions {
 
     public int getYOffset() {
         return yOffset;
+    }
+
+    public Directions turnRight() {
+        return values()[(this.ordinal() + 1) % values().length];
+    }
+
+    public Directions turnLeft() {
+        return values()[(this.ordinal() - 1) % values().length];
     }
 }
