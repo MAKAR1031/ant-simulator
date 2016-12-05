@@ -24,8 +24,9 @@ public class PickupNode extends GPNode {
     @Override
     public void eval(EvolutionState state, int thread, GPData input, ADFStack stack, GPIndividual individual, Problem problem) {
         FieldData data = (FieldData) input;
-        Ant ant = data.getAnts()[data.getCurrentAnt()];
-        data.getFood()[ant.getPosition().getX()][ant.getPosition().getY()] = false;
-        ant.setFeedFood(ant.getFeedFood() + 1);
+        Ant ant = data.getCurrentAnt();
+        if (data.containsFood(ant.getPosition())) {
+            ant.pickupFood(data);
+        }
     }
 }

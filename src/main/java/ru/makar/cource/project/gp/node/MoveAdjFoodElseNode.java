@@ -26,28 +26,25 @@ public class MoveAdjFoodElseNode extends GPNode {
     @Override
     public void eval(EvolutionState state, int thread, GPData input, ADFStack stack, GPIndividual individual, Problem problem) {
         FieldData data = (FieldData) input;
-        Ant ant = data.getAnts()[data.getCurrentAnt()];
+        Ant ant = data.getCurrentAnt();
         Directions direction = ant.getPosition().getDirection();
 
-        if (moveAndEat(data, ant, direction)) return;
-        if (moveAndEat(data, ant, direction.turnRight())) return;
-        if (moveAndEat(data, ant, direction.turnLeft())) return;
-        if (moveAndEat(data, ant, direction.turnAround())) return;
+        if (tryMoveAndEat(data, ant, direction)) return;
+        if (tryMoveAndEat(data, ant, direction.turnRight())) return;
+        if (tryMoveAndEat(data, ant, direction.turnLeft())) return;
+        if (tryMoveAndEat(data, ant, direction.turnAround())) return;
 
         children[0].eval(state, thread, input, stack, individual, problem);
     }
 
-    private boolean moveAndEat(FieldData data, Ant ant, Directions direction) {
+    private boolean tryMoveAndEat(FieldData data, Ant ant, Directions direction) {
         Position position = ant.getPosition();
-        int nextX = position.getX() + direction.getXOffset();
-        int nextY = position.getY() + direction.getYOffset();
-        if (nextX > 0 && nextX < data.getFood().length && data.getFood()[nextX][nextY]) {
-            position.setX(nextX);
-            position.setY(nextY);
+        int nextCol = position.getCol() + direction.getColOffset();
+        int nextRow = position.getRow() + direction.getRowOffset();
+        if (data.canMove(nextCol, nextRow, ant) && data.containsFood(nextCol, nextRow)) {
             position.setDirection(direction);
-            data.getFood()[nextX][nextY] = false;
-            ant.setCount(ant.getCount() + 1);
-            ant.setFeedFood(ant.getFeedFood() + 1);
+            ant.move(1);
+            ant.pickupFood(data);
             return true;
         }
         return false;

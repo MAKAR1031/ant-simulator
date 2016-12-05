@@ -6,31 +6,35 @@ public enum Directions {
     DOWN(0, 1),
     LEFT(-1, 0);
 
-    int xOffset;
-    int yOffset;
+    int colOffset;
+    int rowOffset;
 
-    Directions(int xOffset, int yOffset) {
-        this.xOffset = xOffset;
-        this.yOffset = yOffset;
+    Directions(int colOffset, int yOffset) {
+        this.colOffset = colOffset;
+        this.rowOffset = yOffset;
     }
 
-    public int getXOffset() {
-        return xOffset;
+    public int getColOffset() {
+        return colOffset;
     }
 
-    public int getYOffset() {
-        return yOffset;
+    public int getRowOffset() {
+        return rowOffset;
+    }
+
+    public Directions turn(int spin) {
+        return values()[(this.ordinal() + spin) % values().length];
     }
 
     public Directions turnRight() {
-        return values()[(this.ordinal() + 1) % values().length];
+        return turn(1);
     }
 
     public Directions turnLeft() {
-        return values()[(this.ordinal() - 1) % values().length];
+        return turn(-1);
     }
 
     public Directions turnAround() {
-        return values()[(this.ordinal() + 2) % values().length];
+        return turn(2);
     }
 }

@@ -25,18 +25,9 @@ public class IfFoodNode extends GPNode {
     @Override
     public void eval(EvolutionState state, int thread, GPData input, ADFStack stack, GPIndividual individual, Problem problem) {
         FieldData data = (FieldData) input;
-        Ant ant = data.getAnts()[data.getCurrentAnt()];
+        Ant ant = data.getCurrentAnt();
         Position position = ant.getPosition();
-        boolean haveFood = false;
-        for (int x = -1; x < 2; x++) {
-            for (int y = -1; y < 2; y++) {
-                if (x == 0 && y == 0) continue;
-                if (data.getFood()[position.getX() + x][position.getY() + y]) {
-                    haveFood = true;
-                    break;
-                }
-            }
-        }
-        children[haveFood ? 0 : 1].eval(state, thread, input, stack, individual, problem);
+        int executeChild = ant.detectFood(data, position) ? 0 : 1;
+        children[executeChild].eval(state, thread, input, stack, individual, problem);
     }
 }

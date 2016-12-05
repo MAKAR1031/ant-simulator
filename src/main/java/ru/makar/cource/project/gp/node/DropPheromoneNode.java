@@ -8,7 +8,6 @@ import ec.gp.GPIndividual;
 import ec.gp.GPNode;
 import ru.makar.cource.project.gp.data.Ant;
 import ru.makar.cource.project.gp.data.FieldData;
-import ru.makar.cource.project.gp.data.Position;
 
 public class DropPheromoneNode extends GPNode {
 
@@ -25,8 +24,7 @@ public class DropPheromoneNode extends GPNode {
     @Override
     public void eval(EvolutionState state, int thread, GPData input, ADFStack stack, GPIndividual individual, Problem problem) {
         FieldData data = (FieldData) input;
-        Ant ant = data.getAnts()[data.getCurrentAnt()];
-        Position position = ant.getPosition();
-        data.getPheromones()[position.getX()][position.getY()] = true;
+        Ant ant = data.getCurrentAnt();
+        ant.dropPheromone(data);
     }
 }

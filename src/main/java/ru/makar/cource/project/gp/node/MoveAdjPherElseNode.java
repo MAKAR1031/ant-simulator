@@ -26,26 +26,24 @@ public class MoveAdjPherElseNode extends GPNode {
     @Override
     public void eval(EvolutionState state, int thread, GPData input, ADFStack stack, GPIndividual individual, Problem problem) {
         FieldData data = (FieldData) input;
-        Ant ant = data.getAnts()[data.getCurrentAnt()];
+        Ant ant = data.getCurrentAnt();
         Directions direction = ant.getPosition().getDirection();
 
-        if (moveToPheromone(data, ant, direction)) return;
-        if (moveToPheromone(data, ant, direction.turnRight())) return;
-        if (moveToPheromone(data, ant, direction.turnLeft())) return;
-        if (moveToPheromone(data, ant, direction.turnAround())) return;
+        if (tryMoveToPheromone(data, ant, direction)) return;
+        if (tryMoveToPheromone(data, ant, direction.turnRight())) return;
+        if (tryMoveToPheromone(data, ant, direction.turnLeft())) return;
+        if (tryMoveToPheromone(data, ant, direction.turnAround())) return;
 
         children[0].eval(state, thread, input, stack, individual, problem);
     }
 
-    private boolean moveToPheromone(FieldData data, Ant ant, Directions direction) {
+    private boolean tryMoveToPheromone(FieldData data, Ant ant, Directions direction) {
         Position position = ant.getPosition();
-        int nextX = position.getX() + direction.getXOffset();
-        int nextY = position.getY() + direction.getYOffset();
-        if (nextX > 0 && nextX < data.getFood().length && data.getPheromones()[nextX][nextY]) {
-            position.setX(nextX);
-            position.setY(nextY);
-            ant.setCount(ant.getCount() + 1);
+        int nextCol = position.getCol() + direction.getColOffset();
+        int nextRow = position.getRow() + direction.getRowOffset();
+        if (data.canMove(nextCol, nextRow, ant) && ant.detectPheromone(data, nextCol, nextRow)) {
             position.setDirection(direction);
+            ant.move(1);
             return true;
         }
         return false;
