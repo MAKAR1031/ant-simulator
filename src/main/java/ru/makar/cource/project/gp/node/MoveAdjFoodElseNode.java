@@ -32,18 +32,19 @@ public class MoveAdjFoodElseNode extends GPNode {
         if (moveAndEat(data, ant, direction)) return;
         if (moveAndEat(data, ant, direction.turnRight())) return;
         if (moveAndEat(data, ant, direction.turnLeft())) return;
-        if (moveAndEat(data, ant, direction.turnRight().turnRight())) return;
+        if (moveAndEat(data, ant, direction.turnAround())) return;
 
         children[0].eval(state, thread, input, stack, individual, problem);
     }
 
     private boolean moveAndEat(FieldData data, Ant ant, Directions direction) {
-        Position position  = ant.getPosition();
-        int nextX = position.getX() + position.getDirection().getXOffset();
-        int nextY = position.getY() + position.getDirection().getYOffset();
+        Position position = ant.getPosition();
+        int nextX = position.getX() + direction.getXOffset();
+        int nextY = position.getY() + direction.getYOffset();
         if (nextX > 0 && nextX < data.getFood().length && data.getFood()[nextX][nextY]) {
             position.setX(nextX);
             position.setY(nextY);
+            position.setDirection(direction);
             data.getFood()[nextX][nextY] = false;
             ant.setCount(ant.getCount() + 1);
             ant.setFeedFood(ant.getFeedFood() + 1);

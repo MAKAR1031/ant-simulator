@@ -29,4 +29,8 @@ public enum Directions {
     public Directions turnLeft() {
         return values()[(this.ordinal() - 1) % values().length];
     }
+
+    public Directions turnAround() {
+        return values()[(this.ordinal() + 2) % values().length];
+    }
 }

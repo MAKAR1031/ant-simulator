@@ -32,19 +32,20 @@ public class MoveAdjPherElseNode extends GPNode {
         if (moveToPheromone(data, ant, direction)) return;
         if (moveToPheromone(data, ant, direction.turnRight())) return;
         if (moveToPheromone(data, ant, direction.turnLeft())) return;
-        if (moveToPheromone(data, ant, direction.turnRight().turnRight())) return;
+        if (moveToPheromone(data, ant, direction.turnAround())) return;
 
         children[0].eval(state, thread, input, stack, individual, problem);
     }
 
     private boolean moveToPheromone(FieldData data, Ant ant, Directions direction) {
-        Position position  = ant.getPosition();
-        int nextX = position.getX() + position.getDirection().getXOffset();
-        int nextY = position.getY() + position.getDirection().getYOffset();
+        Position position = ant.getPosition();
+        int nextX = position.getX() + direction.getXOffset();
+        int nextY = position.getY() + direction.getYOffset();
         if (nextX > 0 && nextX < data.getFood().length && data.getPheromones()[nextX][nextY]) {
             position.setX(nextX);
             position.setY(nextY);
             ant.setCount(ant.getCount() + 1);
+            position.setDirection(direction);
             return true;
         }
         return false;
