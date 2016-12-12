@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0"
+            prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="ru.makar.cource.project.ui.controllers.MainController">
+    <VBox layoutX="14.0" layoutY="14.0" prefHeight="400.0" prefWidth="770.0" spacing="20.0" AnchorPane.leftAnchor="15.0"
+          AnchorPane.rightAnchor="15.0">
+        <VBox spacing="5.0">
+            <HBox spacing="20.0">
+                <Label prefWidth="200.0" text="Ширина поля">
+                    <font>
+                        <Font name="Verdana" size="16.0"/>
+                    </font>
+                </Label>
+                <TextField fx:id="widthField" prefWidth="200.0"/>
+            </HBox>
+            <HBox spacing="20.0">
+                <Label prefWidth="200.0" text="Высота поля">
+                    <font>
+                        <Font name="Verdana" size="16.0"/>
+                    </font>
+                </Label>
+                <TextField fx:id="heightField" prefWidth="200.0"/>
+            </HBox>
+            <HBox spacing="20.0">
+                <Label prefWidth="200.0" text="Количество еды">
+                    <font>
+                        <Font name="Verdana" size="16.0"/>
+                    </font>
+                </Label>
+                <TextField fx:id="foodField" prefWidth="200.0"/>
+            </HBox>
+            <HBox spacing="20.0">
+                <Label prefWidth="200.0" text="Количество муравьев">
+                    <font>
+                        <Font name="Verdana" size="16.0"/>
+                    </font>
+                </Label>
+                <TextField fx:id="antField" prefWidth="200.0"/>
+            </HBox>
+        </VBox>
+        <AnchorPane prefHeight="200.0" prefWidth="200.0">
+            <TableView fx:id="foodCoorsTable" editable="true" minHeight="-Infinity" minWidth="-Infinity"
+                       prefHeight="200.0" prefWidth="425.0"/>
+        </AnchorPane>
+        <Button onAction="#saveData" mnemonicParsing="false" text="Сохранить"/>
+    </VBox>
+</AnchorPane>

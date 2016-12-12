@@ -1,11 +1,13 @@
 package ru.makar.cource.project.gp.data;
 
 import ec.gp.GPData;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
+@Builder
 public class FieldData extends GPData {
     private boolean food[][];
     private boolean pheromones[][];

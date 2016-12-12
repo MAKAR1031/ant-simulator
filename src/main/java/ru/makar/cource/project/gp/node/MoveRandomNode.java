@@ -2,7 +2,10 @@ package ru.makar.cource.project.gp.node;
 
 import ec.EvolutionState;
 import ec.Problem;
-import ec.gp.*;
+import ec.gp.ADFStack;
+import ec.gp.GPData;
+import ec.gp.GPIndividual;
+import ec.gp.GPNode;
 import ru.makar.cource.project.gp.data.Ant;
 import ru.makar.cource.project.gp.data.Directions;
 import ru.makar.cource.project.gp.data.FieldData;
