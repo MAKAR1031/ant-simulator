@@ -23,7 +23,7 @@ public enum Directions {
     }
 
     public Directions turn(int spin) {
-        return values()[(this.ordinal() + spin) % values().length];
+        return values()[Math.abs(this.ordinal() + spin) % values().length];
     }
 
     public Directions turnRight() {

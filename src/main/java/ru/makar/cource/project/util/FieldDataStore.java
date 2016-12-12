@@ -17,7 +17,7 @@ public class FieldDataStore {
     }
 
     public boolean containsData() {
-        return data == null;
+        return data != null;
     }
 
     public FieldData getData() {

@@ -44,7 +44,6 @@ public class MoveAdjFoodElseNode extends GPNode {
         if (data.canMove(nextCol, nextRow, ant) && data.containsFood(nextCol, nextRow)) {
             position.setDirection(direction);
             ant.move(1);
-            ant.pickupFood(data);
             return true;
         }
         return false;

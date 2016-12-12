@@ -1,13 +1,13 @@
 package ru.makar.cource.project.gp.data;
 
 import ec.gp.GPData;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 @Getter
 @Setter
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class FieldData extends GPData {
     private boolean food[][];
     private boolean pheromones[][];
@@ -52,15 +52,15 @@ public class FieldData extends GPData {
     }
 
     public boolean containsFood(int col, int row) {
-        return food[row][col];
+        return checkPosition(col, row) && food[row][col];
     }
 
     public boolean containsFood(Position position) {
-        return containsFood(position.getCol(), position.getRow());
+        return containsFood(position.getRow(), position.getCol());
     }
 
     public boolean containsPheromone(int col, int row) {
-        return pheromones[row][col];
+        return checkPosition(col, row) && pheromones[row][col];
     }
 
     void pickupFood(Position position) {
@@ -68,6 +68,10 @@ public class FieldData extends GPData {
     }
 
     void dropPheromone(Position position) {
-        pheromones[position.getCol()][position.getRow()] = true;
+        pheromones[position.getRow()][position.getCol()] = true;
+    }
+
+    private boolean checkPosition(int col, int row) {
+        return col >= 0 && col < width && row >= 0 && row < height;
     }
 }

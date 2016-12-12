@@ -30,8 +30,8 @@ public class MoveRandomNode extends GPNode {
         int spin = state.random[thread].nextInt(4) + 1;
         Position position = ant.getPosition();
         Directions newDirection = position.getDirection().turn(spin);
-        int nextCol = position.getCol() + newDirection.getColOffset();
-        int nextRow = position.getRow() + newDirection.getRowOffset();
+        int nextCol = position.getCol() + 2 * newDirection.getColOffset();
+        int nextRow = position.getRow() + 2 * newDirection.getRowOffset();
         if (data.canMove(nextCol, nextRow, ant)) {
             position.setDirection(newDirection);
             ant.move(2);

@@ -29,7 +29,7 @@ public class Ant {
         Directions direction = position.getDirection();
         for (int i = 0; i < steps; i++) {
             position.setCol(position.getCol() + direction.getColOffset());
-            position.setRow(position.getCol() + direction.getRowOffset());
+            position.setRow(position.getRow() + direction.getRowOffset());
         }
         count++;
     }
