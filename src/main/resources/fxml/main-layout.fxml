@@ -47,5 +47,6 @@
                        prefHeight="200.0" prefWidth="425.0"/>
         </AnchorPane>
         <Button onAction="#saveData" mnemonicParsing="false" text="Сохранить"/>
+        <Button fx:id="launchButton" onAction="#launch" disable="true" mnemonicParsing="false" text="Запустить"/>
     </VBox>
 </AnchorPane>

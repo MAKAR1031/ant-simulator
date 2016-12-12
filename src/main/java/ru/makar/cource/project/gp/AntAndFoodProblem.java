@@ -27,7 +27,7 @@ public class AntAndFoodProblem extends GPProblem implements SimpleProblemForm {
     }
 
     @Override
-    public void evaluate(EvolutionState state, Individual ind, int subpopulation, int threadnum) {
+    public void evaluate(EvolutionState state, Individual ind, int subPopulation, int threadNum) {
         if (ind.evaluated) {
             return;
         }
@@ -36,7 +36,7 @@ public class AntAndFoodProblem extends GPProblem implements SimpleProblemForm {
         FieldData data = (FieldData) input;
         for (int i = 0; i < data.getAnts().length; i++) {
             data.setCurrentAntIndex(i);
-            individual.trees[0].child.eval(state, threadnum, input, stack, individual, this);
+            individual.trees[0].child.eval(state, threadNum, input, stack, individual, this);
         }
 
         int maxFood = data.getMaxFood();

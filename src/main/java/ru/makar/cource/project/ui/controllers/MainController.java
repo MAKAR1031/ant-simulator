@@ -4,8 +4,10 @@ import javafx.beans.binding.BooleanBinding;
 import javafx.beans.property.BooleanProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableColumn.CellEditEvent;
 import javafx.scene.control.TableView;
@@ -13,6 +15,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.util.converter.IntegerStringConverter;
+import ru.makar.cource.project.ExperimentLauncher;
 import ru.makar.cource.project.util.FieldDataCompiler;
 import ru.makar.cource.project.util.FieldDataStore;
 import ru.makar.cource.project.gp.data.FieldData;
@@ -38,7 +41,10 @@ public class MainController implements Initializable {
     @FXML
     private TableView<TableFoodData> foodCoorsTable;
 
-    ObservableList<TableFoodData> tableData;
+    @FXML
+    private Button launchButton;
+
+    private ObservableList<TableFoodData> tableData;
     private FieldDataCompiler dataCompiler;
 
     public MainController() {
@@ -89,13 +95,23 @@ public class MainController implements Initializable {
 
     @FXML
     private void saveData() {
-        if (validateData()) {
-            int width = Integer.parseInt(widthField.getText());
-            int height = Integer.parseInt(heightField.getText());
-            int antCount = Integer.parseInt(antField.getText());
-            FieldData fieldData = dataCompiler.compile(width, height, antCount, tableData);
-            FieldDataStore.getCurrentInstance().setData(fieldData);
+        try {
+            if (validateData()) {
+                int width = Integer.parseInt(widthField.getText());
+                int height = Integer.parseInt(heightField.getText());
+                int antCount = Integer.parseInt(antField.getText());
+                FieldData fieldData = dataCompiler.compile(width, height, antCount, tableData);
+                FieldDataStore.getCurrentInstance().setData(fieldData);
+                launchButton.setDisable(false);
+            }
+        } catch (NumberFormatException e) {
+            e.printStackTrace();
         }
+    }
+
+    @FXML
+    private void launch() {
+        ExperimentLauncher.launch();
     }
 
     private TableColumn<TableFoodData, Integer> createColumn(String property) {
