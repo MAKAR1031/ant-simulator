@@ -3,10 +3,10 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Font?>
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0"
-            prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="490.0"
+            prefWidth="450.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="ru.makar.cource.project.ui.controllers.MainController">
-    <VBox layoutX="14.0" layoutY="14.0" prefHeight="400.0" prefWidth="770.0" spacing="20.0" AnchorPane.leftAnchor="15.0"
+    <VBox layoutX="14.0" layoutY="14.0" prefHeight="400.0" prefWidth="400.0" spacing="20.0" AnchorPane.leftAnchor="15.0"
           AnchorPane.rightAnchor="15.0">
         <VBox spacing="5.0">
             <HBox spacing="20.0">
@@ -44,9 +44,15 @@
         </VBox>
         <AnchorPane prefHeight="200.0" prefWidth="200.0">
             <TableView fx:id="foodCoorsTable" editable="true" minHeight="-Infinity" minWidth="-Infinity"
-                       prefHeight="200.0" prefWidth="425.0"/>
+                       prefHeight="250.0" prefWidth="425.0">
+                <placeholder>
+                    <Label text="Заполните поля выше"/>
+                </placeholder>
+            </TableView>
         </AnchorPane>
-        <Button onAction="#saveData" mnemonicParsing="false" text="Сохранить"/>
-        <Button fx:id="launchButton" onAction="#launch" disable="true" mnemonicParsing="false" text="Запустить"/>
+        <HBox spacing="20" alignment="CENTER">
+            <Button onAction="#saveData" mnemonicParsing="false" text="Сохранить"/>
+            <Button fx:id="launchButton" onAction="#launch" disable="true" mnemonicParsing="false" text="Запустить"/>
+        </HBox>
     </VBox>
 </AnchorPane>

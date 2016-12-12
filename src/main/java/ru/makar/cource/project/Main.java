@@ -19,5 +19,7 @@ public class Main extends Application {
         stage.setTitle("Ant simulator");
         stage.setScene(new Scene(root));
         stage.show();
+        stage.setResizable(false);
+        stage.sizeToScene();
     }
 }
