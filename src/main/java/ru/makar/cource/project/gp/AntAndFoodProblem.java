@@ -6,13 +6,25 @@ import ec.gp.GPIndividual;
 import ec.gp.GPProblem;
 import ec.gp.koza.KozaFitness;
 import ec.simple.SimpleProblemForm;
+import ec.util.Parameter;
 import ru.makar.cource.project.gp.data.Ant;
 import ru.makar.cource.project.gp.data.FieldData;
+import ru.makar.cource.project.util.FieldDataStore;
 
 public class AntAndFoodProblem extends GPProblem implements SimpleProblemForm {
 
     private static final double omega1 = 100;
     private static final double omega2 = 10;
+
+    @Override
+    public void setup(EvolutionState state, Parameter base) {
+        super.setup(state, base);
+        FieldDataStore dataStore = FieldDataStore.getCurrentInstance();
+        if (!dataStore.containsData()) {
+            state.output.fatal("Входные данные отсуствуют");
+        }
+        input = dataStore.getData();
+    }
 
     @Override
     public void evaluate(EvolutionState state, Individual ind, int subpopulation, int threadnum) {

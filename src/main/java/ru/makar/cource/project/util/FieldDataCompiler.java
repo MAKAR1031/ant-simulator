@@ -1,4 +1,4 @@
-package ru.makar.cource.project;
+package ru.makar.cource.project.util;
 
 import ru.makar.cource.project.gp.data.Ant;
 import ru.makar.cource.project.gp.data.Directions;

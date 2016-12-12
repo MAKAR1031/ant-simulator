@@ -13,8 +13,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.util.converter.IntegerStringConverter;
-import ru.makar.cource.project.FieldDataCompiler;
-import ru.makar.cource.project.FieldDataStore;
+import ru.makar.cource.project.util.FieldDataCompiler;
+import ru.makar.cource.project.util.FieldDataStore;
 import ru.makar.cource.project.gp.data.FieldData;
 import ru.makar.cource.project.ui.TableFoodData;
 
