@@ -51,7 +51,8 @@
             </TableView>
         </AnchorPane>
         <HBox spacing="20" alignment="CENTER">
-            <Button onAction="#saveData" mnemonicParsing="false" text="Сохранить"/>
+            <Button text="Из файла" mnemonicParsing="false" onAction="#readFile"/>
+            <Button fx:id="saveButton" onAction="#saveData" mnemonicParsing="false" text="Сохранить"/>
             <Button fx:id="launchButton" onAction="#launch" disable="true" mnemonicParsing="false" text="Запустить"/>
         </HBox>
     </VBox>

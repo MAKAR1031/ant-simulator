@@ -14,13 +14,16 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.stage.FileChooser;
 import javafx.util.converter.IntegerStringConverter;
 import ru.makar.cource.project.ExperimentLauncher;
 import ru.makar.cource.project.util.FieldDataCompiler;
 import ru.makar.cource.project.util.FieldDataStore;
 import ru.makar.cource.project.gp.data.FieldData;
 import ru.makar.cource.project.ui.TableFoodData;
+import ru.makar.cource.project.util.FileDataReader;
 
+import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -40,6 +43,9 @@ public class MainController implements Initializable {
 
     @FXML
     private TableView<TableFoodData> foodCoorsTable;
+
+    @FXML
+    private Button saveButton;
 
     @FXML
     private Button launchButton;
@@ -64,6 +70,7 @@ public class MainController implements Initializable {
         heightField.focusTraversableProperty().bind(fieldsFillProperty);
         foodField.focusTraversableProperty().bind(fieldsFillProperty);
         antField.focusTraversableProperty().bind(fieldsFillProperty);
+        saveButton.disableProperty().bind(fieldsFillProperty);
 
         TableColumn<TableFoodData, Integer> xColumn = createColumn("x");
         TableColumn<TableFoodData, Integer> yColumn = createColumn("y");
@@ -91,6 +98,23 @@ public class MainController implements Initializable {
                 }
             }
         });
+    }
+
+    @FXML
+    private void readFile() {
+        FileChooser fileChooser = new FileChooser();
+        File file = fileChooser.showOpenDialog(null);
+        if (file != null) {
+            try {
+                FileDataReader reader = new FileDataReader();
+                FieldData fieldData = reader.readData(file);
+                System.out.println(fieldData.toString());
+                FieldDataStore.getCurrentInstance().setData(fieldData);
+                launchButton.setDisable(false);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     @FXML

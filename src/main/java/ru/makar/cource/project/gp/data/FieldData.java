@@ -31,6 +31,24 @@ public class FieldData extends GPData {
         data.height = this.height;
     }
 
+    @Override
+    public String toString() {
+        StringBuilder result = new StringBuilder();
+        result.append("W = ").append(width);
+        result.append("\n");
+        result.append("H = ").append(height);
+        result.append("\n");
+        result.append("Food count = ").append(maxFood);
+        result.append("\n");
+        for (boolean[] row : food) {
+            for (boolean cell : row) {
+                result.append(cell ? "1 " : "0 ");
+            }
+            result.append("\n");
+        }
+        return result.toString();
+    }
+
     public Ant getCurrentAnt() {
         return ants[currentAntIndex];
     }
