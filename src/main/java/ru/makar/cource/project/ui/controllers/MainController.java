@@ -26,14 +26,10 @@ import ru.makar.cource.project.gp.data.FieldData;
 import ru.makar.cource.project.ui.FoodCord;
 import ru.makar.cource.project.util.FieldDataCompiler;
 import ru.makar.cource.project.util.FieldDataStore;
-import ru.makar.cource.project.util.FileDataReader;
 
 import java.io.File;
 import java.net.URL;
-import java.util.HashSet;
-import java.util.List;
-import java.util.ResourceBundle;
-import java.util.Set;
+import java.util.*;
 
 import static javafx.animation.Animation.Status.RUNNING;
 
@@ -125,16 +121,29 @@ public class MainController implements Initializable {
     }
 
     @FXML
-    private void readFile() {
+    private void fillFromFile() {
         FileChooser fileChooser = new FileChooser();
         File file = fileChooser.showOpenDialog(null);
         if (file != null) {
-            try {
-                FileDataReader reader = new FileDataReader();
-                FieldData fieldData = reader.readData(file);
-                System.out.println(fieldData.toString());
-                FieldDataStore.getCurrentInstance().setData(fieldData);
-                launchButton.setDisable(false);
+            try (Scanner scanner = new Scanner(file)) {
+                int width = scanner.nextInt();
+                int height = scanner.nextInt();
+                int foodCount = scanner.nextInt();
+                int antCount = scanner.nextInt();
+                List<FoodCord> foodCords = new LinkedList<>();
+                for (int i = 0; i < foodCount; i++) {
+                    int x = scanner.nextInt();
+                    int y = scanner.nextInt();
+                    FoodCord data = new FoodCord(x, y);
+                    foodCords.add(data);
+                }
+
+                widthField.setText(String.valueOf(width));
+                heightField.setText(String.valueOf(height));
+                foodField.setText(String.valueOf(foodCount));
+                antField.setText(String.valueOf(antCount));
+                this.foodCords.clear();
+                this.foodCords.addAll(foodCords);
             } catch (Exception e) {
                 e.printStackTrace();
             }
