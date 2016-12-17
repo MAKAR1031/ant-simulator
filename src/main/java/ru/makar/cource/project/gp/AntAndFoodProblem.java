@@ -36,9 +36,11 @@ public class AntAndFoodProblem extends GPProblem implements SimpleProblemForm {
 
         GPIndividual individual = (GPIndividual) ind;
         FieldData data = (FieldData) input;
-        for (int i = 0; i < data.getAnts().length; i++) {
-            data.setCurrentAntIndex(i);
-            individual.trees[0].child.eval(state, threadNum, input, stack, individual, this);
+        for (int j = 0; j < 100; j++) {
+            for (int i = 0; i < data.getAnts().length; i++) {
+                data.setCurrentAntIndex(i);
+                individual.trees[0].child.eval(state, threadNum, input, stack, individual, this);
+            }
         }
 
         int maxFood = data.getMaxFood();
