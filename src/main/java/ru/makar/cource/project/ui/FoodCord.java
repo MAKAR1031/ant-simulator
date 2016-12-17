@@ -1,5 +1,8 @@
 package ru.makar.cource.project.ui;
 
+import lombok.EqualsAndHashCode;
+
+@EqualsAndHashCode
 public class FoodCord {
     private int x;
     private int y;

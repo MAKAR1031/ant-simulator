@@ -1,7 +1,12 @@
 package ru.makar.cource.project.ui.controllers;
 
+import javafx.animation.Animation;
+import javafx.animation.RotateTransition;
+import javafx.animation.SequentialTransition;
 import javafx.beans.binding.BooleanBinding;
 import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.StringProperty;
+import javafx.beans.value.ChangeListener;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -14,6 +19,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.stage.FileChooser;
+import javafx.util.Duration;
 import javafx.util.converter.IntegerStringConverter;
 import ru.makar.cource.project.ExperimentLauncher;
 import ru.makar.cource.project.gp.data.FieldData;
@@ -24,7 +30,12 @@ import ru.makar.cource.project.util.FileDataReader;
 
 import java.io.File;
 import java.net.URL;
+import java.util.HashSet;
+import java.util.List;
 import java.util.ResourceBundle;
+import java.util.Set;
+
+import static javafx.animation.Animation.Status.RUNNING;
 
 public class MainController implements Initializable {
 
@@ -52,6 +63,8 @@ public class MainController implements Initializable {
     private ObservableList<FoodCord> foodCords;
     private FieldDataCompiler dataCompiler;
 
+    private Animation invalidInputAnimation;
+
     public MainController() {
         dataCompiler = new FieldDataCompiler();
         foodCords = FXCollections.observableArrayList();
@@ -59,6 +72,18 @@ public class MainController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        invalidInputAnimation = createInvalidInputAnimation();
+        ChangeListener<String> numericFieldsChangeListener = (observable, oldValue, newValue) -> {
+            if (!newValue.matches("\\d*")) {
+                StringProperty textProperty = (StringProperty) observable;
+                textProperty.setValue(oldValue);
+            }
+        };
+        widthField.textProperty().addListener(numericFieldsChangeListener);
+        heightField.textProperty().addListener(numericFieldsChangeListener);
+        foodField.textProperty().addListener(numericFieldsChangeListener);
+        antField.textProperty().addListener(numericFieldsChangeListener);
+
         BooleanBinding fieldsFillProperty = widthField.textProperty().isEmpty()
                 .or(heightField.textProperty().isEmpty())
                 .or(foodField.textProperty().isEmpty())
@@ -119,13 +144,17 @@ public class MainController implements Initializable {
     @FXML
     private void saveData() {
         try {
-            if (validateData()) {
-                int width = Integer.parseInt(widthField.getText());
-                int height = Integer.parseInt(heightField.getText());
-                int antCount = Integer.parseInt(antField.getText());
+            int width = Integer.parseInt(widthField.getText());
+            int height = Integer.parseInt(heightField.getText());
+            int antCount = Integer.parseInt(antField.getText());
+            if (validateData(width, height, antCount, foodCords)) {
                 FieldData fieldData = dataCompiler.compile(width, height, antCount, foodCords);
                 FieldDataStore.getCurrentInstance().setData(fieldData);
                 launchButton.setDisable(false);
+            } else {
+                if (!RUNNING.equals(invalidInputAnimation.getStatus())) {
+                    invalidInputAnimation.play();
+                }
             }
         } catch (NumberFormatException e) {
             e.printStackTrace();
@@ -141,17 +170,48 @@ public class MainController implements Initializable {
         TableColumn<FoodCord, Integer> column = new TableColumn<>(property);
         column.setCellValueFactory(new PropertyValueFactory<>(property));
         column.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
-        column.setOnEditCommit((CellEditEvent<FoodCord, Integer> t) ->
-                t.getTableView()
-                        .getItems()
-                        .get(t.getTablePosition().getRow())
-                        .set(t.getNewValue(), property));
+        column.setOnEditCommit(
+                (CellEditEvent<FoodCord, Integer> t) ->
+                        t.getTableView()
+                                .getItems()
+                                .get(t.getTablePosition().getRow())
+                                .set(t.getNewValue(), property)
+        );
         return column;
     }
 
-    //TODO: реализовать валидацию данных
-    private boolean validateData() {
+    private Animation createInvalidInputAnimation() {
+        RotateTransition rt1 = new RotateTransition(Duration.millis(50), saveButton);
+        int byAngle = 15;
+        rt1.setByAngle(byAngle);
+        rt1.setCycleCount(2);
+        rt1.setAutoReverse(true);
+        RotateTransition rt2 = new RotateTransition(Duration.millis(50), saveButton);
+        rt2.setByAngle(-byAngle);
+        rt2.setCycleCount(2);
+        rt2.setAutoReverse(true);
+        return new SequentialTransition(rt1, rt2);
+    }
+
+    private boolean validateData(int width, int height, int antCount, List<FoodCord> foodCords) {
         boolean isValid = true;
+        if (2 > width || width > 200 || 2 > height || height > 200) {
+            isValid = false;
+        }
+
+        if (0 > foodCords.size() || foodCords.size() > width * height) {
+            isValid = false;
+        }
+
+        Set<FoodCord> foodCordSet = new HashSet<>(foodCords);
+        if (foodCordSet.size() != foodCords.size()) {
+            isValid = false;
+        }
+
+        if (1 >= antCount || antCount > 20) {
+            isValid = false;
+        }
+
         return isValid;
     }
 }
