@@ -1,11 +1,21 @@
 package ru.makar.cource.project.util;
 
+import lombok.Getter;
+import lombok.Setter;
 import ru.makar.cource.project.gp.data.FieldData;
 
 public class FieldDataStore {
     private static FieldDataStore currentInstance;
 
     private FieldData data;
+
+    @Getter
+    @Setter
+    private int omega1;
+
+    @Getter
+    @Setter
+    private int omega2;
 
     private FieldDataStore() { }
 

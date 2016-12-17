@@ -3,7 +3,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Font?>
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="490.0"
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0"
             prefWidth="450.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="ru.makar.cource.project.ui.controllers.MainController">
     <VBox layoutX="14.0" layoutY="14.0" prefHeight="400.0" prefWidth="400.0" spacing="20.0" AnchorPane.leftAnchor="15.0"
@@ -40,6 +40,22 @@
                     </font>
                 </Label>
                 <TextField fx:id="antField" prefWidth="200.0"/>
+            </HBox>
+            <HBox spacing="20.0">
+                <Label prefWidth="200.0" text="ω1">
+                    <font>
+                        <Font name="Verdana" size="16.0"/>
+                    </font>
+                </Label>
+                <TextField fx:id="omega1Field" prefWidth="200.0" text="100"/>
+            </HBox>
+            <HBox spacing="20.0">
+                <Label prefWidth="200.0" text="ω2">
+                    <font>
+                        <Font name="Verdana" size="16.0"/>
+                    </font>
+                </Label>
+                <TextField fx:id="omega2Field" prefWidth="200.0" text="10"/>
             </HBox>
         </VBox>
         <AnchorPane prefHeight="200.0" prefWidth="200.0">

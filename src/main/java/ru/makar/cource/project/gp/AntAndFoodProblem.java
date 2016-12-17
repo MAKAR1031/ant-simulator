@@ -13,8 +13,8 @@ import ru.makar.cource.project.util.FieldDataStore;
 
 public class AntAndFoodProblem extends GPProblem implements SimpleProblemForm {
 
-    private static final double omega1 = 100;
-    private static final double omega2 = 10;
+    private double omega1;
+    private double omega2;
 
     @Override
     public void setup(EvolutionState state, Parameter base) {
@@ -24,6 +24,8 @@ public class AntAndFoodProblem extends GPProblem implements SimpleProblemForm {
             state.output.fatal("Входные данные отсуствуют");
         }
         input = dataStore.getData();
+        omega1 = dataStore.getOmega1();
+        omega2 = dataStore.getOmega2();
     }
 
     @Override

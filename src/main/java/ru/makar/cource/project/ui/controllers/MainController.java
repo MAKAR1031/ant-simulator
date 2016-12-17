@@ -48,6 +48,12 @@ public class MainController implements Initializable {
     private TextField antField;
 
     @FXML
+    private TextField omega1Field;
+
+    @FXML
+    private TextField omega2Field;
+
+    @FXML
     private TableView<FoodCord> foodCoorsTable;
 
     @FXML
@@ -79,11 +85,15 @@ public class MainController implements Initializable {
         heightField.textProperty().addListener(numericFieldsChangeListener);
         foodField.textProperty().addListener(numericFieldsChangeListener);
         antField.textProperty().addListener(numericFieldsChangeListener);
+        omega1Field.textProperty().addListener(numericFieldsChangeListener);
+        omega2Field.textProperty().addListener(numericFieldsChangeListener);
 
         BooleanBinding fieldsFillProperty = widthField.textProperty().isEmpty()
                 .or(heightField.textProperty().isEmpty())
                 .or(foodField.textProperty().isEmpty())
-                .or(antField.textProperty().isEmpty());
+                .or(antField.textProperty().isEmpty())
+                .or(omega1Field.textProperty().isEmpty())
+                .or(omega2Field.textProperty().isEmpty());
 
         foodCoorsTable.disableProperty().bind(fieldsFillProperty);
         widthField.focusTraversableProperty().bind(fieldsFillProperty);
@@ -158,7 +168,10 @@ public class MainController implements Initializable {
             int antCount = Integer.parseInt(antField.getText());
             if (validateData(width, height, antCount, foodCords)) {
                 FieldData fieldData = dataCompiler.compile(width, height, antCount, foodCords);
-                FieldDataStore.getCurrentInstance().setData(fieldData);
+                FieldDataStore dataStore = FieldDataStore.getCurrentInstance();
+                dataStore.setData(fieldData);
+                dataStore.setOmega1(Integer.parseInt(omega1Field.getText()));
+                dataStore.setOmega2(Integer.parseInt(omega2Field.getText()));
                 launchButton.setDisable(false);
             } else {
                 if (!RUNNING.equals(invalidInputAnimation.getStatus())) {
