@@ -4,7 +4,6 @@ import javafx.beans.binding.BooleanBinding;
 import javafx.beans.property.BooleanProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -17,10 +16,10 @@ import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.stage.FileChooser;
 import javafx.util.converter.IntegerStringConverter;
 import ru.makar.cource.project.ExperimentLauncher;
+import ru.makar.cource.project.gp.data.FieldData;
+import ru.makar.cource.project.ui.FoodCord;
 import ru.makar.cource.project.util.FieldDataCompiler;
 import ru.makar.cource.project.util.FieldDataStore;
-import ru.makar.cource.project.gp.data.FieldData;
-import ru.makar.cource.project.ui.TableFoodData;
 import ru.makar.cource.project.util.FileDataReader;
 
 import java.io.File;
@@ -42,7 +41,7 @@ public class MainController implements Initializable {
     private TextField antField;
 
     @FXML
-    private TableView<TableFoodData> foodCoorsTable;
+    private TableView<FoodCord> foodCoorsTable;
 
     @FXML
     private Button saveButton;
@@ -50,12 +49,12 @@ public class MainController implements Initializable {
     @FXML
     private Button launchButton;
 
-    private ObservableList<TableFoodData> tableData;
+    private ObservableList<FoodCord> foodCords;
     private FieldDataCompiler dataCompiler;
 
     public MainController() {
         dataCompiler = new FieldDataCompiler();
-        tableData = FXCollections.observableArrayList();
+        foodCords = FXCollections.observableArrayList();
     }
 
     @Override
@@ -72,27 +71,27 @@ public class MainController implements Initializable {
         antField.focusTraversableProperty().bind(fieldsFillProperty);
         saveButton.disableProperty().bind(fieldsFillProperty);
 
-        TableColumn<TableFoodData, Integer> xColumn = createColumn("x");
-        TableColumn<TableFoodData, Integer> yColumn = createColumn("y");
-        foodCoorsTable.getColumns().addAll(xColumn, yColumn);
-        foodCoorsTable.setItems(tableData);
+        TableColumn<FoodCord, Integer> xColumn = createColumn("x");
+        TableColumn<FoodCord, Integer> yColumn = createColumn("y");
+        foodCoorsTable.getColumns().add(xColumn);
+        foodCoorsTable.getColumns().add(yColumn);
+        foodCoorsTable.setItems(foodCords);
 
         foodCoorsTable.disableProperty().addListener(e -> {
             BooleanProperty property = (BooleanProperty) e;
             if (!property.get()) {
                 try {
                     int foodCount = Integer.parseInt(foodField.getText());
-                    int itemsSize = tableData.size();
+                    int itemsSize = foodCords.size();
                     if (foodCount > itemsSize) {
                         for (int i = 0; i < foodCount - itemsSize; i++) {
-                            tableData.add(new TableFoodData(0, 0));
+                            foodCords.add(new FoodCord(0, 0));
                         }
                     } else if (foodCount < itemsSize) {
                         for (int i = 0; i < itemsSize - foodCount; i++) {
-                            tableData.remove(0);
+                            foodCords.remove(0);
                         }
                     }
-
                 } catch (Exception ex) {
                     ex.printStackTrace();
                 }
@@ -124,7 +123,7 @@ public class MainController implements Initializable {
                 int width = Integer.parseInt(widthField.getText());
                 int height = Integer.parseInt(heightField.getText());
                 int antCount = Integer.parseInt(antField.getText());
-                FieldData fieldData = dataCompiler.compile(width, height, antCount, tableData);
+                FieldData fieldData = dataCompiler.compile(width, height, antCount, foodCords);
                 FieldDataStore.getCurrentInstance().setData(fieldData);
                 launchButton.setDisable(false);
             }
@@ -138,11 +137,11 @@ public class MainController implements Initializable {
         ExperimentLauncher.launch();
     }
 
-    private TableColumn<TableFoodData, Integer> createColumn(String property) {
-        TableColumn<TableFoodData, Integer> column = new TableColumn<>(property);
+    private TableColumn<FoodCord, Integer> createColumn(String property) {
+        TableColumn<FoodCord, Integer> column = new TableColumn<>(property);
         column.setCellValueFactory(new PropertyValueFactory<>(property));
         column.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
-        column.setOnEditCommit((CellEditEvent<TableFoodData, Integer> t) ->
+        column.setOnEditCommit((CellEditEvent<FoodCord, Integer> t) ->
                 t.getTableView()
                         .getItems()
                         .get(t.getTablePosition().getRow())

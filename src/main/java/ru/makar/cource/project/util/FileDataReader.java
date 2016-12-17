@@ -1,7 +1,7 @@
 package ru.makar.cource.project.util;
 
 import ru.makar.cource.project.gp.data.FieldData;
-import ru.makar.cource.project.ui.TableFoodData;
+import ru.makar.cource.project.ui.FoodCord;
 
 import java.io.File;
 import java.util.LinkedList;
@@ -23,11 +23,11 @@ public class FileDataReader {
             int height = scanner.nextInt();
             int foodCount = scanner.nextInt();
             int antCount = scanner.nextInt();
-            List<TableFoodData> foodCoors = new LinkedList<>();
+            List<FoodCord> foodCoors = new LinkedList<>();
             for (int i = 0; i < foodCount; i++) {
                 int x = scanner.nextInt();
                 int y = scanner.nextInt();
-                TableFoodData data = new TableFoodData(x, y);
+                FoodCord data = new FoodCord(x, y);
                 foodCoors.add(data);
             }
             return fieldDataCompiler.compile(width, height, antCount, foodCoors);
