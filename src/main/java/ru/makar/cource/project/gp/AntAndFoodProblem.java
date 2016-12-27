@@ -52,8 +52,9 @@ public class AntAndFoodProblem extends GPProblem implements SimpleProblemForm {
         }
         double value = omega1 * (maxFood - food) + omega2 * count;
 
-        ind.evaluated = true;
         KozaFitness fitness = (KozaFitness) ind.fitness;
         fitness.setStandardizedFitness(state, value);
+        fitness.hits = food;
+        ind.evaluated = true;
     }
 }
