@@ -13,17 +13,18 @@ import ru.makar.cource.project.util.FieldDataStore;
 
 public class AntAndFoodProblem extends GPProblem implements SimpleProblemForm {
 
+    private FieldDataStore dataStore;
+
     private double omega1;
     private double omega2;
 
     @Override
     public void setup(EvolutionState state, Parameter base) {
         super.setup(state, base);
-        FieldDataStore dataStore = FieldDataStore.getCurrentInstance();
+        dataStore = FieldDataStore.getCurrentInstance();
         if (!dataStore.containsData()) {
             state.output.fatal("Входные данные отсуствуют");
         }
-        input = dataStore.getData();
         omega1 = dataStore.getOmega1();
         omega2 = dataStore.getOmega2();
     }
@@ -35,11 +36,11 @@ public class AntAndFoodProblem extends GPProblem implements SimpleProblemForm {
         }
 
         GPIndividual individual = (GPIndividual) ind;
-        FieldData data = (FieldData) input;
+        FieldData data = dataStore.getData();
         for (int j = 0; j < 100; j++) {
             for (int i = 0; i < data.getAnts().length; i++) {
                 data.setCurrentAntIndex(i);
-                individual.trees[0].child.eval(state, threadNum, input, stack, individual, this);
+                individual.trees[0].child.eval(state, threadNum, data, stack, individual, this);
             }
         }
 
