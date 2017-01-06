@@ -22,7 +22,12 @@ public class IfHasFoodNode extends GPNode {
     }
 
     @Override
-    public void eval(EvolutionState state, int thread, GPData input, ADFStack stack, GPIndividual individual, Problem problem) {
+    public void eval(EvolutionState state,
+                     int thread,
+                     GPData input,
+                     ADFStack stack,
+                     GPIndividual individual,
+                     Problem problem) {
         FieldData data = (FieldData) input;
         Ant ant = data.getCurrentAnt();
         children[ant.hasFood() ? 0 : 1].eval(state, thread, input, stack, individual, problem);
