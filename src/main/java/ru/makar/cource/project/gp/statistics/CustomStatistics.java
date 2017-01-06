@@ -1,4 +1,4 @@
-package ru.makar.cource.project.gp;
+package ru.makar.cource.project.gp.statistics;
 
 import ec.EvolutionState;
 import ec.gp.koza.KozaFitness;

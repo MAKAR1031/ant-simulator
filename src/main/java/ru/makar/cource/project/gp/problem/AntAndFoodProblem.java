@@ -1,4 +1,4 @@
-package ru.makar.cource.project.gp;
+package ru.makar.cource.project.gp.problem;
 
 import ec.EvolutionState;
 import ec.Individual;
