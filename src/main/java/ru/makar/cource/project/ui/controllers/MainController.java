@@ -57,6 +57,9 @@ public class MainController implements Initializable {
     private TableView<FoodCord> foodCoorsTable;
 
     @FXML
+    private Button randomButton;
+
+    @FXML
     private Button saveButton;
 
     @FXML
@@ -100,6 +103,7 @@ public class MainController implements Initializable {
         heightField.focusTraversableProperty().bind(fieldsFillProperty);
         foodField.focusTraversableProperty().bind(fieldsFillProperty);
         antField.focusTraversableProperty().bind(fieldsFillProperty);
+        randomButton.disableProperty().bind(fieldsFillProperty);
         saveButton.disableProperty().bind(fieldsFillProperty);
 
         TableColumn<FoodCord, Integer> xColumn = createColumn("x");
@@ -128,6 +132,24 @@ public class MainController implements Initializable {
                 }
             }
         });
+    }
+
+    @FXML
+    private void generateRandom() {
+        int width = Integer.parseInt(widthField.getText());
+        int height = Integer.parseInt(heightField.getText());
+        int foodCount = Integer.parseInt(foodField.getText());
+        List<FoodCord> foodCords = new LinkedList<>();
+        FoodCord foodCord;
+        Random random = new Random();
+        for (int i = 0; i < foodCount; i++) {
+            do {
+                foodCord = new FoodCord(random.nextInt(width), random.nextInt(height));
+            } while (foodCords.contains(foodCord));
+            foodCords.add(foodCord);
+        }
+        this.foodCords.clear();
+        this.foodCords.addAll(foodCords);
     }
 
     @FXML
