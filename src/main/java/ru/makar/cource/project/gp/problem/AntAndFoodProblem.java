@@ -5,13 +5,12 @@ import ec.Individual;
 import ec.gp.GPIndividual;
 import ec.gp.GPProblem;
 import ec.gp.koza.KozaFitness;
-import ec.simple.SimpleProblemForm;
 import ec.util.Parameter;
 import ru.makar.cource.project.gp.data.Ant;
 import ru.makar.cource.project.gp.data.FieldData;
 import ru.makar.cource.project.util.FieldDataStore;
 
-public class AntAndFoodProblem extends GPProblem implements SimpleProblemForm {
+public class AntAndFoodProblem extends GPProblem {
 
     private FieldDataStore dataStore;
 
