@@ -20,7 +20,7 @@ public class AntAndFoodProblem extends GPProblem {
     @Override
     public void setup(EvolutionState state, Parameter base) {
         super.setup(state, base);
-        dataStore = FieldDataStore.getCurrentInstance();
+        dataStore = FieldDataStore.getInstance();
         if (!dataStore.containsData()) {
             state.output.fatal("Входные данные отсуствуют");
         }

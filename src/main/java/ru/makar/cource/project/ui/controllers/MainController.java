@@ -190,7 +190,7 @@ public class MainController implements Initializable {
             int antCount = Integer.parseInt(antField.getText());
             if (validateData(width, height, antCount, foodCords)) {
                 FieldData fieldData = dataCompiler.compile(width, height, antCount, foodCords);
-                FieldDataStore dataStore = FieldDataStore.getCurrentInstance();
+                FieldDataStore dataStore = FieldDataStore.getInstance();
                 dataStore.setData(fieldData);
                 dataStore.setOmega1(Integer.parseInt(omega1Field.getText()));
                 dataStore.setOmega2(Integer.parseInt(omega2Field.getText()));

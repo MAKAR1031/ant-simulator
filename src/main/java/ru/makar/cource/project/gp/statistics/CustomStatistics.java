@@ -31,7 +31,7 @@ public final class CustomStatistics extends SimpleStatistics {
         super.setup(state, base);
         if (statistics == null) {
             statistics = new HashMap<>();
-            maxFood = FieldDataStore.getCurrentInstance().getData().getMaxFood();
+            maxFood = FieldDataStore.getInstance().getData().getMaxFood();
         }
     }
 

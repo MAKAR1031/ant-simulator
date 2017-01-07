@@ -5,8 +5,9 @@ import lombok.Getter;
 import lombok.Setter;
 import ru.makar.cource.project.gp.data.FieldData;
 
-public class FieldDataStore {
-    private static FieldDataStore currentInstance;
+public final class FieldDataStore {
+    private static final FieldDataStore INSTANCE = new FieldDataStore();
+
     private static Cloner cloner;
 
     private FieldData data;
@@ -19,15 +20,12 @@ public class FieldDataStore {
     @Setter
     private int omega2;
 
-    private FieldDataStore() {
-        cloner = new Cloner();
+    public static FieldDataStore getInstance() {
+        return INSTANCE;
     }
 
-    public static FieldDataStore getCurrentInstance() {
-        if (currentInstance == null) {
-            currentInstance = new FieldDataStore();
-        }
-        return currentInstance;
+    private FieldDataStore() {
+        cloner = new Cloner();
     }
 
     public boolean containsData() {
