@@ -67,8 +67,7 @@ public final class CustomStatistics extends SimpleStatistics {
             sb.append(key).append(" ").append(pair.getLeft()).append(" ").append(pair.getRight()).append("\n");
         }
         byte[] bytes = sb.toString().getBytes();
-        try {
-            FileChannel channel = (FileChannel) Files.newByteChannel(Paths.get(FILE_NAME), READ, WRITE, CREATE);
+        try (FileChannel channel = (FileChannel) Files.newByteChannel(Paths.get(FILE_NAME), READ, WRITE, CREATE)) {
             MappedByteBuffer buffer = channel.map(READ_WRITE, 0, bytes.length);
             buffer.put(bytes);
         } catch (IOException e) {
