@@ -1,4 +1,4 @@
-package ru.makar.cource.project.gp.node;
+package ru.makar.course.project.gp.node;
 
 import ec.EvolutionState;
 import ec.Problem;
@@ -6,8 +6,8 @@ import ec.gp.ADFStack;
 import ec.gp.GPData;
 import ec.gp.GPIndividual;
 import ec.gp.GPNode;
-import ru.makar.cource.project.gp.data.Ant;
-import ru.makar.cource.project.gp.data.FieldData;
+import ru.makar.course.project.gp.data.Ant;
+import ru.makar.course.project.gp.data.FieldData;
 
 public class DropPheromoneNode extends GPNode {
 

@@ -1,4 +1,4 @@
-package ru.makar.cource.project.gp.node;
+package ru.makar.course.project.gp.node;
 
 import ec.EvolutionState;
 import ec.Problem;
@@ -6,19 +6,17 @@ import ec.gp.ADFStack;
 import ec.gp.GPData;
 import ec.gp.GPIndividual;
 import ec.gp.GPNode;
-import ru.makar.cource.project.gp.data.Ant;
-import ru.makar.cource.project.gp.data.FieldData;
 
-public class PickupNode extends GPNode {
+public class PrognNode extends GPNode {
 
     @Override
     public int expectedChildren() {
-        return 0;
+        return 2;
     }
 
     @Override
     public String toString() {
-        return "PICK-UP";
+        return "PROGN";
     }
 
     @Override
@@ -28,10 +26,7 @@ public class PickupNode extends GPNode {
                      ADFStack stack,
                      GPIndividual individual,
                      Problem problem) {
-        FieldData data = (FieldData) input;
-        Ant ant = data.getCurrentAnt();
-        if (data.containsFood(ant.getPosition())) {
-            ant.pickupFood(data);
-        }
+        children[0].eval(state, thread, input, stack, individual, problem);
+        children[1].eval(state, thread, input, stack, individual, problem);
     }
 }

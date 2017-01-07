@@ -1,4 +1,4 @@
-package ru.makar.cource.project;
+package ru.makar.course.project;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;

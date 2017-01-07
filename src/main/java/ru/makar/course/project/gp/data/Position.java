@@ -1,4 +1,4 @@
-package ru.makar.cource.project.gp.data;
+package ru.makar.course.project.gp.data;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -21,8 +21,7 @@ public class Position {
 
         Position position = (Position) o;
 
-        if (col != position.col) return false;
-        return row == position.row;
+        return col == position.col && row == position.row;
     }
 
     @Override

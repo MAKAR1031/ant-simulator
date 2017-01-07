@@ -1,4 +1,4 @@
-package ru.makar.cource.project.gp.data;
+package ru.makar.course.project.gp.data;
 
 public enum Directions {
     UP(0, -1),

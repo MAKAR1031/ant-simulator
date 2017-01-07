@@ -22,19 +22,19 @@
 
 ## Набор действий муравья
 
-* [MOVE-RANDOM](src/main/java/ru/makar/cource/project/gp/node/MoveRandomNode.java) - муравей меняет направление произвольным образом, после
+* [MOVE-RANDOM](src/main/java/ru/makar/course/project/gp/node/MoveRandomNode.java) - муравей меняет направление произвольным образом, после
 чего идет на две клетки в этом направлении
-* [MOVE-NEST](src/main/java/ru/makar/cource/project/gp/node/MoveNestNode.java) - муравей делает один шаг в направлении колонии
-* [PICK-UP](src/main/java/ru/makar/cource/project/gp/node/PickupNode.java) - взять еду из текущей клетки
-* [DROP-PHEROMONE](src/main/java/ru/makar/cource/project/gp/node/DropPheromoneNode.java) - оставить феромон в текущей клетке. Этот феромон
+* [MOVE-NEST](src/main/java/ru/makar/course/project/gp/node/MoveNestNode.java) - муравей делает один шаг в направлении колонии
+* [PICK-UP](src/main/java/ru/makar/course/project/gp/node/PickupNode.java) - взять еду из текущей клетки
+* [DROP-PHEROMONE](src/main/java/ru/makar/course/project/gp/node/DropPheromoneNode.java) - оставить феромон в текущей клетке. Этот феромон
 будет ощущаться другими муравьями в районе квадрата 3 на 3 с центром в этой клетке
-* [IF-FOOD](src/main/java/ru/makar/cource/project/gp/node/IfFoodNode.java) - функция от двух аргументов. Если в соседней клетке перед 
+* [IF-FOOD](src/main/java/ru/makar/course/project/gp/node/IfFoodNode.java) - функция от двух аргументов. Если в соседней клетке перед 
 муравьем еда, то функция выполняет действие, эквивалентное первому аргументу, в противном случае выполняется второе действие
-* [IF-HAS-FOOD](src/main/java/ru/makar/cource/project/gp/node/IfHasFoodNode.java) - аналогично IF-FOOD, только проверяет, несет ли муравей 
+* [IF-HAS-FOOD](src/main/java/ru/makar/course/project/gp/node/IfHasFoodNode.java) - аналогично IF-FOOD, только проверяет, несет ли муравей 
 еду в данный момент
-* [MOVE-ADJ-FOOD-ELSE](src/main/java/ru/makar/cource/project/gp/node/MoveAdjFoodElseNode.java) - если в соседней клетке есть еда, то надо перейти 
+* [MOVE-ADJ-FOOD-ELSE](src/main/java/ru/makar/course/project/gp/node/MoveAdjFoodElseNode.java) - если в соседней клетке есть еда, то надо перейти 
 туда, в противном случае выполнить действие, указанное в аргументе. Если еда есть сразу в нескольких соседних клетках, то муравей 
 переходит туда, где нужно затратить наименьшее количество усилий(в плане поворотов)
-* [MOVE-ADJ-PHER-ELSE](src/main/java/ru/makar/cource/project/gp/node/MoveAdjPherElseNode.java) - аналогично предыдущему случаю, но здесь 
+* [MOVE-ADJ-PHER-ELSE](src/main/java/ru/makar/course/project/gp/node/MoveAdjPherElseNode.java) - аналогично предыдущему случаю, но здесь 
 проверяется наличие феромонов в соседних клетках
-* [PROGN](src/main/java/ru/makar/cource/project/gp/node/PrognNode.java) - последовательность действий
+* [PROGN](src/main/java/ru/makar/course/project/gp/node/PrognNode.java) - последовательность действий

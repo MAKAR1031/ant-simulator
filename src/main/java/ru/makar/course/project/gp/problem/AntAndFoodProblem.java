@@ -1,4 +1,4 @@
-package ru.makar.cource.project.gp.problem;
+package ru.makar.course.project.gp.problem;
 
 import ec.EvolutionState;
 import ec.Individual;
@@ -6,9 +6,11 @@ import ec.gp.GPIndividual;
 import ec.gp.GPProblem;
 import ec.gp.koza.KozaFitness;
 import ec.util.Parameter;
-import ru.makar.cource.project.gp.data.Ant;
-import ru.makar.cource.project.gp.data.FieldData;
-import ru.makar.cource.project.util.FieldDataStore;
+import ru.makar.course.project.gp.data.Ant;
+import ru.makar.course.project.gp.data.FieldData;
+import ru.makar.course.project.util.FieldDataStore;
+import ru.makar.course.project.gp.data.FieldData;
+import ru.makar.course.project.util.FieldDataStore;
 
 public class AntAndFoodProblem extends GPProblem {
 

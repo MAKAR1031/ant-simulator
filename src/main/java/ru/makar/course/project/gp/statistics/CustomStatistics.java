@@ -1,11 +1,12 @@
-package ru.makar.cource.project.gp.statistics;
+package ru.makar.course.project.gp.statistics;
 
 import ec.EvolutionState;
 import ec.gp.koza.KozaFitness;
 import ec.simple.SimpleStatistics;
 import ec.util.Parameter;
 import org.apache.commons.lang3.tuple.MutablePair;
-import ru.makar.cource.project.util.FieldDataStore;
+import ru.makar.course.project.util.FieldDataStore;
+import ru.makar.course.project.util.FieldDataStore;
 
 import java.io.IOException;
 import java.nio.MappedByteBuffer;

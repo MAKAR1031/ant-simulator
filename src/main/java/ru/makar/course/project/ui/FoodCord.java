@@ -1,4 +1,4 @@
-package ru.makar.cource.project.ui;
+package ru.makar.course.project.ui;
 
 import lombok.EqualsAndHashCode;
 

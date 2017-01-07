@@ -1,4 +1,4 @@
-package ru.makar.cource.project;
+package ru.makar.course.project;
 
 import ec.Evolve;
 

@@ -1,9 +1,9 @@
-package ru.makar.cource.project.util;
+package ru.makar.course.project.util;
 
 import com.rits.cloning.Cloner;
 import lombok.Getter;
 import lombok.Setter;
-import ru.makar.cource.project.gp.data.FieldData;
+import ru.makar.course.project.gp.data.FieldData;
 
 public final class FieldDataStore {
     private static final FieldDataStore INSTANCE = new FieldDataStore();

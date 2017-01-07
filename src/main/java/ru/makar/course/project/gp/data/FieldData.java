@@ -1,4 +1,4 @@
-package ru.makar.cource.project.gp.data;
+package ru.makar.course.project.gp.data;
 
 import ec.gp.GPData;
 import lombok.*;
@@ -77,7 +77,7 @@ public class FieldData extends GPData {
         return containsFood(position.getRow(), position.getCol());
     }
 
-    public boolean containsPheromone(int col, int row) {
+    boolean containsPheromone(int col, int row) {
         return checkPosition(col, row) && pheromones[row][col];
     }
 

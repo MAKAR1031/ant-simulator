@@ -1,4 +1,4 @@
-package ru.makar.cource.project.ui.controllers;
+package ru.makar.course.project.ui.controllers;
 
 import javafx.animation.Animation;
 import javafx.animation.RotateTransition;
@@ -21,11 +21,13 @@ import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.stage.FileChooser;
 import javafx.util.Duration;
 import javafx.util.converter.IntegerStringConverter;
-import ru.makar.cource.project.ExperimentLauncher;
-import ru.makar.cource.project.gp.data.FieldData;
-import ru.makar.cource.project.ui.FoodCord;
-import ru.makar.cource.project.util.FieldDataCompiler;
-import ru.makar.cource.project.util.FieldDataStore;
+import ru.makar.course.project.ExperimentLauncher;
+import ru.makar.course.project.gp.data.FieldData;
+import ru.makar.course.project.ui.FoodCord;
+import ru.makar.course.project.util.FieldDataCompiler;
+import ru.makar.course.project.util.FieldDataStore;
+import ru.makar.course.project.ui.FoodCord;
+import ru.makar.course.project.util.FieldDataStore;
 
 import java.io.File;
 import java.net.URL;

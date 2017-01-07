@@ -1,10 +1,13 @@
-package ru.makar.cource.project.util;
+package ru.makar.course.project.util;
 
-import ru.makar.cource.project.gp.data.Ant;
-import ru.makar.cource.project.gp.data.Directions;
-import ru.makar.cource.project.gp.data.FieldData;
-import ru.makar.cource.project.gp.data.Position;
-import ru.makar.cource.project.ui.FoodCord;
+import ru.makar.course.project.gp.data.Ant;
+import ru.makar.course.project.gp.data.Directions;
+import ru.makar.course.project.gp.data.FieldData;
+import ru.makar.course.project.gp.data.Position;
+import ru.makar.course.project.ui.FoodCord;
+import ru.makar.course.project.gp.data.FieldData;
+import ru.makar.course.project.gp.data.Position;
+import ru.makar.course.project.ui.FoodCord;
 
 import java.util.List;
 
