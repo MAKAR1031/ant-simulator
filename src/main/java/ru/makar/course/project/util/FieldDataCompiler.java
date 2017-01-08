@@ -5,9 +5,6 @@ import ru.makar.course.project.gp.data.Directions;
 import ru.makar.course.project.gp.data.FieldData;
 import ru.makar.course.project.gp.data.Position;
 import ru.makar.course.project.ui.FoodCord;
-import ru.makar.course.project.gp.data.FieldData;
-import ru.makar.course.project.gp.data.Position;
-import ru.makar.course.project.ui.FoodCord;
 
 import java.util.List;
 

@@ -6,8 +6,8 @@ public enum Directions {
     DOWN(0, 1),
     LEFT(-1, 0);
 
-    int colOffset;
-    int rowOffset;
+    private final int colOffset;
+    private final int rowOffset;
 
     Directions(int colOffset, int yOffset) {
         this.colOffset = colOffset;

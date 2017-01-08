@@ -9,8 +9,6 @@ import ec.util.Parameter;
 import ru.makar.course.project.gp.data.Ant;
 import ru.makar.course.project.gp.data.FieldData;
 import ru.makar.course.project.util.FieldDataStore;
-import ru.makar.course.project.gp.data.FieldData;
-import ru.makar.course.project.util.FieldDataStore;
 
 public class AntAndFoodProblem extends GPProblem {
 

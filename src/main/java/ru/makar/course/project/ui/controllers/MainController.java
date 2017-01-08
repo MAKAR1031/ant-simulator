@@ -26,8 +26,6 @@ import ru.makar.course.project.gp.data.FieldData;
 import ru.makar.course.project.ui.FoodCord;
 import ru.makar.course.project.util.FieldDataCompiler;
 import ru.makar.course.project.util.FieldDataStore;
-import ru.makar.course.project.ui.FoodCord;
-import ru.makar.course.project.util.FieldDataStore;
 
 import java.io.File;
 import java.net.URL;
